@@ -19,3 +19,10 @@ Config 서버는 아래와 같은 형식의 Endpoint를 통해 설정 정보를 
 - 공식문서 : https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_spring_cloud_config_client
 
 ConfigServicePropertySourceLocator가 등록되어 Config Server의 설정정보를 읽어온다
+
+## Spring Cloud Bus
+스프링에서 제공하는 cloud bus. 설정정보 갱신시 버스에 연결되 있는 서비스들에 RefreshRemoteApplicationEvent를 발행해서 갱신 시킨다
+- 공식문서 : https://docs.spring.io/spring-cloud-bus/docs/3.0.3-SNAPSHOT/reference/html/#quick-start
+
+스프링 Cloud bus는 Cloud Stream을 이용해서 이벤트를 전송하고, 해당 구현체는 크게 kafka, rabbitmq 등이 있다. 
+

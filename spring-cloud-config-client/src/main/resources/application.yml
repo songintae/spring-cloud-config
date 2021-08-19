@@ -2,4 +2,15 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, configprops, refresh
+        include: health, configprops, refresh, busrefresh
+
+spring:
+  cloud:
+    bus:
+      trace:
+        enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: test
+    password: test
