@@ -3,4 +3,4 @@ spring:
     name: config-client
   cloud:
     config:
-      uri: ${CLOUD_CONFIG_SERVER_URI:http://localhost:8888}
+      uri: http://${CLOUD_CONFIG_SERVER_HOST:localhost}:${CLOUD_CONFIG_SERVER_PORT:8888}

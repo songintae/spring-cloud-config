@@ -24,5 +24,14 @@ ConfigServicePropertySourceLocator가 등록되어 Config Server의 설정정보
 스프링에서 제공하는 cloud bus. 설정정보 갱신시 버스에 연결되 있는 서비스들에 RefreshRemoteApplicationEvent를 발행해서 갱신 시킨다
 - 공식문서 : https://docs.spring.io/spring-cloud-bus/docs/3.0.3-SNAPSHOT/reference/html/#quick-start
 
-스프링 Cloud bus는 Cloud Stream을 이용해서 이벤트를 전송하고, 해당 구현체는 크게 kafka, rabbitmq 등이 있다. 
+스프링 Cloud bus는 Cloud Stream을 이용해서 이벤트를 전송하고, 해당 구현체는 크게 kafka, rabbitmq 등이 있다.
+
+
+## Docker 적용
+
+### Spring Boot Application Dockerfile 만들기
+- 공식 문서 :  https://spring.io/guides/gs/spring-boot-docker/
+
+### docker-compose container order 처리
+- 공식 문서 : https://docs.docker.com/compose/startup-order/
 

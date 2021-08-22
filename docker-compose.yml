@@ -1,33 +1,36 @@
 version: "3.9"
 services:
-  cloud_config_server:
-    container_name: "cloud_config_server"
+  cloud-config-server:
+    # docker network 안에서 DSN는 컨테이너 네임으로 만들어지기 때문에 under score를 피해야한다.
+    container_name: "cloud-config-server"
     image: spring/cloud-config-server
     ports:
       - "127.0.0.1:8888:8888"
     environment:
       - CLOUD_SERVER_GIT_URI=https://github.com/songintae/spring-cloud-config-repository
-      - RABBITMQ_HOST=localhost
+      - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=test
       - RABBITMQ_PASSWORD=test
     depends_on:
       - rabbitmq
 
-  cloud_config_client:
-    container_name: "cloud_config_client"
+  cloud-config-client:
+    # docker network 안에서 DSN는 컨테이너 네임으로 만들어지기 때문에 under score를 피해야한다.
+    container_name: "cloud-config-client"
     image: spring/cloud-config-client
     ports:
       - "127.0.0.1:8080:8080"
     environment:
-      - CLOUD_CONFIG_SERVER_URI=http://localhost:8888
-      - RABBITMQ_HOST=localhost
+      - CLOUD_CONFIG_SERVER_HOST=cloud-config-server
+      - CLOUD_CONFIG_SERVER_PORT=8888
+      - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=test
       - RABBITMQ_PASSWORD=test
     depends_on:
       - rabbitmq
-      - cloud_config_server
+      - cloud-config-server
 
   rabbitmq:
     container_name: "rabbitmq"
