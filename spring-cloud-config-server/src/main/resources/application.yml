@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: ${SERVER_PORT:8888}
 
 management:
   endpoints:
@@ -12,12 +12,12 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/songintae/spring-cloud-config-repository
+          uri: ${CLOUD_SERVER_GIT_URI:https://github.com/songintae/spring-cloud-config-repository}
     bus:
       trace:
         enabled: true
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: test
-    password: test
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:test}
+    password: ${RABBITMQ_PASSWORD:test}

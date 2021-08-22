@@ -1,3 +1,6 @@
+server:
+  port: ${SERVER_PORT:8080}
+
 management:
   endpoints:
     web:
@@ -10,7 +13,7 @@ spring:
       trace:
         enabled: true
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: test
-    password: test
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:test}
+    password: ${RABBITMQ_PASSWORD:test}

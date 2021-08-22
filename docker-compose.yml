@@ -1,5 +1,34 @@
-version: "3.8"
+version: "3.9"
 services:
+  cloud_config_server:
+    container_name: "cloud_config_server"
+    image: spring/cloud-config-server
+    ports:
+      - "127.0.0.1:8888:8888"
+    environment:
+      - CLOUD_SERVER_GIT_URI=https://github.com/songintae/spring-cloud-config-repository
+      - RABBITMQ_HOST=localhost
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=test
+      - RABBITMQ_PASSWORD=test
+    depends_on:
+      - rabbitmq
+
+  cloud_config_client:
+    container_name: "cloud_config_client"
+    image: spring/cloud-config-client
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      - CLOUD_CONFIG_SERVER_URI=http://localhost:8888
+      - RABBITMQ_HOST=localhost
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=test
+      - RABBITMQ_PASSWORD=test
+    depends_on:
+      - rabbitmq
+      - cloud_config_server
+
   rabbitmq:
     container_name: "rabbitmq"
     image: rabbitmq:management
