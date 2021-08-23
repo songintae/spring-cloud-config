@@ -1,0 +1,5 @@
+src/**
+gradle/**
+build.gradlew
+build/**
+!build/dependency
