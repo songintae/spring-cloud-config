@@ -39,6 +39,18 @@ jobs:
       # build
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
         
       # log in to dokcer
       - name: Log in to Docker Hub
@@ -55,6 +67,8 @@ jobs:
           push: true
           tags: kookooku/cloud-config-server:latest
           labels: study
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
 
       # Config Clent Build and Push Docker Image
       - name: Config Clent Build and push Docker image
@@ -64,3 +78,5 @@ jobs:
           push: true
           tags: kookooku/cloud-config-client:latest
           labels: study
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
