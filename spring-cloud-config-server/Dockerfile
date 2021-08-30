@@ -1,11 +1,13 @@
-FROM openjdk:8-jdk
-COPY dockerfile-entrypoint.sh . /
-COPY wait-for-it.sh . /
-RUN chmod 777 wait-for-it.sh && \
-chmod 777 dockerfile-entrypoint.sh && \
-addgroup spring && \
-useradd spring -g spring
-USER spring:spring
+FROM openjdk:8-jdk-alpine
+COPY dockerfile-entrypoint.sh .
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["/bin/bash", "-c", "./dockerfile-entrypoint.sh"]
+ENV DOCKERIZE_VERSION v0.6.1
+RUN apk add --no-cache openssl \
+&& wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+&& tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+&& rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+&& chmod 777 dockerfile-entrypoint.sh \
+&& addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+ENTRYPOINT ["/bin/sh", "-c", "./dockerfile-entrypoint.sh"]

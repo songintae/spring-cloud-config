@@ -1,3 +1,4 @@
-./wait-for-it.sh $RABBITMQ_HOST:$RABBITMQ_PORT -t 10 -- echo "rabbitmq is up"
-./wait-for-it.sh $CLOUD_CONFIG_SERVER_HOST:$CLOUD_CONFIG_SERVER_PORT -t 20 -- echo "cloud-config-server is up"
-java -jar /app.jar
+#!/bin/sh
+dockerize -wait tcp://$RABBITMQ_HOST:$RABBITMQ_PORT -timeout 10s
+dockerize -wait tcp://$CLOUD_CONFIG_SERVER_HOST:$CLOUD_CONFIG_SERVER_PORT -timeout 40s
+exec java -jar /app.jar
