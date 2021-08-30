@@ -19,11 +19,5 @@ function make_docker_image() {
   docker build -t "$1" "$2"
 }
 
-./gradlew clean build -x test
 unpacked spring-cloud-config-server
-make_docker_image spring/cloud-config-server spring-cloud-config-server
-
 unpacked spring-cloud-config-client
-make_docker_image spring/cloud-config-client spring-cloud-config-client
-
-docker-compose up
