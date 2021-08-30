@@ -3,7 +3,7 @@ services:
   cloud-config-server:
     # docker network 안에서 DSN는 컨테이너 네임으로 만들어지기 때문에 under score를 피해야한다.
     container_name: "cloud-config-server"
-    image: spring/cloud-config-server
+    image: kookooku/cloud-config-server:latest
     ports:
       - "127.0.0.1:8888:8888"
     environment:
@@ -18,7 +18,7 @@ services:
   cloud-config-client:
     # docker network 안에서 DSN는 컨테이너 네임으로 만들어지기 때문에 under score를 피해야한다.
     container_name: "cloud-config-client"
-    image: spring/cloud-config-client
+    image: kookooku/cloud-config-client:latest
     ports:
       - "127.0.0.1:8080:8080"
     environment:
