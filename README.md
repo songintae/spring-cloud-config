@@ -35,3 +35,11 @@ ConfigServicePropertySourceLocator가 등록되어 Config Server의 설정정보
 ### docker-compose container order 처리
 - 공식 문서 : https://docs.docker.com/compose/startup-order/
 
+
+### Github Action을 이용한 Docker CI Reference
+- Building and testing Java with Gradle : https://docs.github.com/en/actions/guides/building-and-testing-java-with-gradle
+- Best practices for using Docker Hub for CI/CD : https://docs.docker.com/ci-cd/best-practices/
+- Configure GitHub Actions : https://docs.docker.com/ci-cd/github-actions/
+- buildKit: https://docs.docker.com/develop/develop-images/build_enhancements/
+- Docker CI Example : https://github.com/metcalfc/docker-action-examples
+
