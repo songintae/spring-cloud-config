@@ -62,5 +62,5 @@ jobs:
         with:
           context: ./spring-cloud-config-client
           push: true
-          tags: kookooku/cloud-config-server:latest
+          tags: kookooku/cloud-config-client:latest
           labels: study
