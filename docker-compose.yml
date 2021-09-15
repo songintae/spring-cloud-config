@@ -1,8 +1,6 @@
 version: "3.9"
 services:
   cloud-config-server:
-    # docker network 안에서 DSN는 컨테이너 네임으로 만들어지기 때문에 under score를 피해야한다.
-    container_name: "cloud-config-server"
     image: kookooku/cloud-config-server:latest
     ports:
       - "127.0.0.1:8888:8888"
@@ -16,11 +14,9 @@ services:
       - rabbitmq
 
   cloud-config-client:
-    # docker network 안에서 DSN는 컨테이너 네임으로 만들어지기 때문에 under score를 피해야한다.
-    container_name: "cloud-config-client"
     image: kookooku/cloud-config-client:latest
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8080"
     environment:
       - CLOUD_CONFIG_SERVER_HOST=cloud-config-server
       - CLOUD_CONFIG_SERVER_PORT=8888
