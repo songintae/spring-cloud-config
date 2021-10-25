@@ -5,11 +5,11 @@ services:
     ports:
       - "127.0.0.1:8888:8888"
     environment:
-      - CLOUD_SERVER_GIT_URI=https://github.com/songintae/spring-cloud-config-repository
-      - RABBITMQ_HOST=rabbitmq
-      - RABBITMQ_PORT=5672
-      - RABBITMQ_USERNAME=test
-      - RABBITMQ_PASSWORD=test
+      - CLOUD_SERVER_GIT_URI=${CLOUD_SERVER_GIT_URI}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
     depends_on:
       - rabbitmq
 
@@ -18,12 +18,12 @@ services:
     ports:
       - "8080"
     environment:
-      - CLOUD_CONFIG_SERVER_HOST=cloud-config-server
-      - CLOUD_CONFIG_SERVER_PORT=8888
-      - RABBITMQ_HOST=rabbitmq
-      - RABBITMQ_PORT=5672
-      - RABBITMQ_USERNAME=test
-      - RABBITMQ_PASSWORD=test
+      - CLOUD_CONFIG_SERVER_HOST=${CLOUD_CONFIG_SERVER_HOST}
+      - CLOUD_CONFIG_SERVER_PORT=${CLOUD_CONFIG_SERVER_PORT}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
     depends_on:
       - rabbitmq
       - cloud-config-server
@@ -35,5 +35,5 @@ services:
       - "127.0.0.1:5672:5672"
       - "127.0.0.1:15672:15672"
     environment:
-      - RABBITMQ_DEFAULT_USER=test
-      - RABBITMQ_DEFAULT_PASS=test
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
